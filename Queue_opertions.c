@@ -43,7 +43,7 @@ int dequeue(struct Queue *q)
     int data;
     if(isEmpty(q)){
         printf("Queue is Empty!!\n");
-        
+        return -1;
     }
     else{
         q->front=q->front+1;
