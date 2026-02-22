@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Queue
+struct circularQueue
 {
     int size;
     int front;
     int back;
     int *arr;
 };
-int isEmpty(struct Queue *q)
+int isEmpty(struct circularQueue *q)
 {
     if (q->front == q->back)
     {
@@ -17,45 +17,46 @@ int isEmpty(struct Queue *q)
 
     return 0;
 }
-int isFull(struct Queue *q)
+int isFull(struct circularQueue *q)
 {
-    if (q->back == q->size - 1)
+    if ((q->back+1)%q->size==q->front)
     {
         return 1;
     }
 
     return 0;
 }
-void enqueue(struct Queue *q, int data)
+void enqueue(struct circularQueue *q, int data)
 {
     if (isFull(q))
     {
-        printf("Queue Overflow!!!\n");
+        printf("circularQueue Overflow!!!\n");
     }
     else
     {
-        q->back = q->back + 1;
+        q->back = (q->back + 1)%q->size;
         q->arr[q->back] = data;
+        printf("Enqueued element is %d\n",data);
     }
 }
-int dequeue(struct Queue *q)
+int dequeue(struct circularQueue *q)
 {
     int data;
     if(isEmpty(q)){
-        printf("Queue is Empty!!\n");
+        printf("circularQueue is Empty!!\n");
         return -1;
     }
     else{
-        q->front=q->front+1;
+        q->front=(q->front+1)%q->size;
         data=q->arr[q->front];
         return data;
     }
 }
 int main()
 {
-    struct Queue *q = (struct Queue *)malloc(sizeof(struct Queue));
+    struct circularQueue *q = (struct circularQueue *)malloc(sizeof(struct circularQueue));
     q->size = 4;
-    q->front = q->back = -1;
+    q->front = q->back = 0;
     q->arr = (int *)malloc(q->size * sizeof(int));
     // queue insertion Operation
     enqueue(q, 5);
@@ -73,7 +74,8 @@ int main()
     printf("Dequeue value is %d\n",dequeue(q));
     printf("Dequeue value is %d\n",dequeue(q));
     printf("Dequeue value is %d\n",dequeue(q));
-    printf("Dequeue value is %d\n",dequeue(q));
+    enqueue(q, 26);
+    enqueue(q, 26);
     enqueue(q, 26);
 
     if(isEmpty(q)){
