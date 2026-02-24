@@ -14,8 +14,7 @@ int isEmpty(struct Queue *q)
     {
         return 1;
     }
-
-    return 0;
+   return 0;
 }
 int isFull(struct Queue *q)
 {
