@@ -37,7 +37,6 @@ void postOrder(struct node *root){
         printf("%d ",root->data);
     }
 }
-
 int isBST(struct node *root){
     static struct node *prev=NULL;
     if(root!=NULL){
