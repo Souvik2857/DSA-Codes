@@ -56,11 +56,13 @@ struct node *searchBST(struct node *root, int data)
 
     else if (data < root->data)
     {
-        searchBST(root->left, data);
+        return searchBST(root->left, data);
+       
     }
     else
     {
-        searchBST(root->right, data);
+        return searchBST(root->right, data);
+         
     }
 }
 int isBST(struct node *root)
