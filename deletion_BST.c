@@ -65,7 +65,7 @@ struct node * deleteNode(struct node * root,int value){
         free(root);
         return NULL;
     }
-    
+
     //search for the node to be deleted
     if(value<root->data){
         root->left=deleteNode(root->left,value);
@@ -98,7 +98,7 @@ int main()
     p1->left = p3;
     p1->right = p4;
     inOrder(p);
-    deleteNode(p,6);
+    deleteNode(p,1);
     printf("\n");
     inOrder(p);
     return 0;
